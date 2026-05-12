@@ -3,7 +3,7 @@ description: OpenTelemetry instrumentation for `package:firebase_messaging`.
   Wraps incoming RemoteMessage handlers with CONSUMER spans and extracts
   traceparent from message data for end-to-end propagation across the push
   backend.
-version: 0.1.0-wip
+version: 0.1.0-beta.1-wip
 repository: https://github.com/Dartastic/otel_firebase_messaging
 homepage: https://dartastic.io
 
