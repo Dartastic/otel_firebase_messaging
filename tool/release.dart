@@ -110,8 +110,16 @@ Future<void> main(List<String> args) async {
     );
     final readmeRefs =
         _replaceReadmeVersion(packageName: packageName, to: release);
-    _runOrThrow('dart', ['pub', 'get'], silent: true);
-    _runOrThrow('dart', ['analyze']);
+    final isFlutterPkg = File(_pubspecPath)
+        .readAsLinesSync()
+        .any((l) => RegExp(r'^\s*sdk:\s*flutter\s*$').hasMatch(l));
+    final runner = isFlutterPkg ? 'flutter' : 'dart';
+    _runOrThrow(runner, ['pub', 'get'], silent: true);
+    if (isFlutterPkg) {
+      _runOrThrow(runner, ['analyze', '--no-fatal-infos']);
+    } else {
+      _runOrThrow(runner, ['analyze']);
+    }
     if (flags.skipTests) {
       stdout.writeln('(skipping tests — --skip-tests)');
     } else if (File('tool/test.sh').existsSync() &&
@@ -122,7 +130,7 @@ Future<void> main(List<String> args) async {
       // hang on those tests.
       _runOrThrow('bash', ['tool/test.sh']);
     } else {
-      _runOrThrow('dart', ['test']);
+      _runOrThrow(runner, ['test']);
     }
     _runOrThrow('git', [
       'add',

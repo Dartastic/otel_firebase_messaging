@@ -9,7 +9,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_messaging_semantics.dart';
 import 'firebase_messaging_suppression.dart';
 
-const _tracerName = 'dartastic_firebase_messaging_otel';
+const _tracerName = 'otel_firebase_messaging';
 const _messagingSystem = 'fcm';
 
 /// Handler types for an incoming FCM message. Affects the

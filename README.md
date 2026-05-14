@@ -1,4 +1,4 @@
-# dartastic_firebase_messaging_otel
+# otel_firebase_messaging
 
 OpenTelemetry instrumentation for
 [`package:firebase_messaging`](https://pub.dev/packages/firebase_messaging)
@@ -12,7 +12,7 @@ helpers.
 
 ```dart
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:dartastic_firebase_messaging_otel/dartastic_firebase_messaging_otel.dart';
+import 'package:otel_firebase_messaging/otel_firebase_messaging.dart';
 
 // Foreground messages
 final fgSub = listenForegroundTraced((message) async {
